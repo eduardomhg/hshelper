@@ -1,0 +1,36 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameSimulator" x:Class="GameSimulator.CardListViewer" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <local:CardViewer x:Name="cardViewer0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer1" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer2" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer3" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer4" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer5" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer6" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer7" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer8" Grid.Row="0" Grid.Column="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+        <local:CardViewer x:Name="cardViewer9" Grid.Row="0" Grid.Column="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden"/>
+    </Grid>
+</UserControl>

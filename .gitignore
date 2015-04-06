@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GameSimulator/bin/Debug
+/GameSimulator/obj/Debug
+/HearthstoneHelper/bin/Debug
+/HearthstoneHelper/obj/Debug
+/HearthstoneLib/obj/Debug
+/ImageChooser/bin/Debug
+/ImageChooser/obj/Debug
+/packages

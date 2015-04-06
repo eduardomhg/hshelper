@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthstoneHelper", "HearthstoneHelper\HearthstoneHelper.csproj", "{841EEF59-E81C-48E6-8257-A4B47FB8D411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearthstoneLib", "HearthstoneLib\HearthstoneLib.csproj", "{9767EF6E-7314-4D64-880C-833F99B8D2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSimulator", "GameSimulator\GameSimulator.csproj", "{2BB12176-3073-4EBC-BFFC-152ECC0C3C79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageChooser", "ImageChooser\ImageChooser.csproj", "{8EEF9B36-26EE-49AB-ABD6-A29AA0C083F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{841EEF59-E81C-48E6-8257-A4B47FB8D411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841EEF59-E81C-48E6-8257-A4B47FB8D411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841EEF59-E81C-48E6-8257-A4B47FB8D411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841EEF59-E81C-48E6-8257-A4B47FB8D411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9767EF6E-7314-4D64-880C-833F99B8D2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9767EF6E-7314-4D64-880C-833F99B8D2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9767EF6E-7314-4D64-880C-833F99B8D2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9767EF6E-7314-4D64-880C-833F99B8D2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BB12176-3073-4EBC-BFFC-152ECC0C3C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB12176-3073-4EBC-BFFC-152ECC0C3C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB12176-3073-4EBC-BFFC-152ECC0C3C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB12176-3073-4EBC-BFFC-152ECC0C3C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EEF9B36-26EE-49AB-ABD6-A29AA0C083F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EEF9B36-26EE-49AB-ABD6-A29AA0C083F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EEF9B36-26EE-49AB-ABD6-A29AA0C083F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EEF9B36-26EE-49AB-ABD6-A29AA0C083F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

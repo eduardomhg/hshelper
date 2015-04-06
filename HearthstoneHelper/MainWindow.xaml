@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:HearthstoneHelper" mc:Ignorable="d" x:Class="HearthstoneHelper.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:CardMechanicsListToStringConverter x:Key="CardMechanicsListToStringConverter" />
+    </Window.Resources>
+    <Grid x:Name="SuperGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Items}" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImagePath}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="mechanicsColumn" Binding="{Binding Mechanics, Converter={StaticResource CardMechanicsListToStringConverter}}" Header="Mechanics" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="ControlsGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Row="0" Content="CheckBox" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
+            <TextBox Grid.Row="1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" />
+        </Grid>
+    </Grid>
+</Window>
