@@ -11,50 +11,33 @@ namespace HearthstoneHelper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private MainViewModel viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            this.DataContext = this;
-            string path = @"C:\Users\Edu\Downloads\AllSets.json";
-            CardInfo.LoadJsonDatabase(path);
-            Items = new ObservableCollection<CardInfo>(CardInfo.AllCards);
-        }
-
-
-        private ObservableCollection<CardInfo> _filteredCards;
-
-        public ObservableCollection<CardInfo> Items
-        {
-            get { return _filteredCards; }
-
-            set 
-            { 
-                _filteredCards = value; 
-                if (PropertyChanged != null) 
-                { 
-                    PropertyChanged(this, new PropertyChangedEventArgs("Items")); 
-                } 
-            }
+            viewModel = new MainViewModel();
+            this.DataContext = viewModel;
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Items = new ObservableCollection<CardInfo>(CardInfo.AllCards);
-
             if ((sender as CheckBox).IsChecked == true)
             {
-                Items = new ObservableCollection<CardInfo>(_filteredCards.Where(c => c.Type == CardType.Enchantment));
+                viewModel.FilterCards(c => c.Type == CardType.Enchantment);
+            }
+            else
+            {
+                viewModel.FilterCards(c => true);
             }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Items = new ObservableCollection<CardInfo>(CardInfo.AllCards.Where(c => c.Name.StartsWith((sender as TextBox).Text, StringComparison.InvariantCultureIgnoreCase)));
+            viewModel.FilterCards(c => c.Name.StartsWith((sender as TextBox).Text, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

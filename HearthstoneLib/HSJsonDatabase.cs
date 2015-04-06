@@ -139,7 +139,7 @@ namespace Hearthstone
         [DataMember]
         internal List<Card> Debug;
         [DataMember]
-        internal List<Card> Expert;
+        internal List<Card> Classic;
         [DataMember]
         internal List<Card> Missions;
         [DataMember]
@@ -148,5 +148,9 @@ namespace Hearthstone
         internal List<Card> Reward;
         [DataMember]
         internal List<Card> System;
+        [DataMember(Name = "Goblins vs Gnomes")]
+        internal List<Card> GoblinsVsGnomes;
+        [DataMember(Name = "Blackrock Mountain")]
+        internal List<Card> BlackrockMountain;
     }
 }

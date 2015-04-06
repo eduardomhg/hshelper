@@ -166,9 +166,9 @@ namespace Hearthstone
         {
             CardImages = new Dictionary<string, BitmapImage>();
 
-            foreach (string filePath in Directory.GetFiles(@"K:\HearthstoneHelper\ImageChooser\Done", "*.png"))
+            foreach (string filePath in Directory.GetFiles(@"..\..\..\Database\Images\Done", "*.png"))
             {
-                CardImages.Add(Path.GetFileNameWithoutExtension(filePath), new BitmapImage(new Uri(filePath)));
+                CardImages.Add(Path.GetFileNameWithoutExtension(filePath), new BitmapImage(new Uri(Path.GetFullPath(filePath))));
             }
         }
 
@@ -196,9 +196,11 @@ namespace Hearthstone
             
             LoadJsonSet(database.Basic, CardSet.Basic);
             LoadJsonSet(database.Naxxramas, CardSet.Naxxramas);
-            LoadJsonSet(database.Expert, CardSet.Expert);
+            LoadJsonSet(database.Classic, CardSet.Classic);
             LoadJsonSet(database.Promotion, CardSet.Promotion);
-            LoadJsonSet(database.Reward, CardSet.Reward); 
+            LoadJsonSet(database.Reward, CardSet.Reward);
+            LoadJsonSet(database.GoblinsVsGnomes, CardSet.GlobinsVsGnomes); 
+            LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain); 
         }
 
         private static void LoadJsonSet(List<HSJsonDatabase.Card> setJsonCards, CardSet set)
@@ -272,6 +274,7 @@ namespace Hearthstone
                                                                                                { "Totem", MinionRace.Totem },
                                                                                                { "Pirate", MinionRace.Pirate },
                                                                                                { "Dragon", MinionRace.Dragon },
+                                                                                               { "Mech", MinionRace.Mech },
                                                                                                { "None", MinionRace.None },};
             return (text != null) ? races[text] : MinionRace.None;
         }

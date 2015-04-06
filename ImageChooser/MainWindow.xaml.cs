@@ -30,14 +30,14 @@ namespace HearthstoneHelper
             InitializeComponent();
 
             this.DataContext = this;
-            string path = @"C:\Users\Edu\Downloads\AllSets.json";
+            string path = @"..\..\AllSets.enUS.json";
             CardInfo.LoadJsonDatabase(path);
 
             _allCards = CardInfo.AllCards.Where(c => c.Type != CardType.Enchantment);
             Items = new ObservableCollection<CardInfo>(_allCards);
 
 
-            _doneImages = Directory.GetFiles(@"K:\HearthstoneHelper\ImageChooser\Done\").Length;
+            _doneImages = Directory.GetFiles(@"..\..\Done\").Length;
             labelCount.Content = _doneImages + "/" + TotalImages;
             _currentIndex = 1;
             GoToNextImage();
@@ -88,7 +88,7 @@ namespace HearthstoneHelper
                 _currentIndex++;
             }
             labelFilename.Content = GenerateFileName(_currentIndex);
-            cardImage.Source = new BitmapImage(new Uri(GenerateDisplayPath(_currentIndex)));
+            cardImage.Source = new BitmapImage(new Uri(Path.GetFullPath(GenerateDisplayPath(_currentIndex))));
         }
 
         
@@ -104,17 +104,17 @@ namespace HearthstoneHelper
 
         string GenerateDisplayPath(int index)
         {
-            return @"K:\HearthstoneHelper\ImageChooser\Original\" + GenerateFileName(index);
+            return @"..\..\Original\" + GenerateFileName(index);
         }
 
         string GenerateSourcePath(int index)
         {
-            return @"K:\HearthstoneHelper\ImageChooser\NotDone\" + GenerateFileName(index);
+            return @"..\..\NotDone\" + GenerateFileName(index);
         }
 
         string GenerateDestinationPath(string hearthstoneID)
         {
-            return @"K:\HearthstoneHelper\ImageChooser\Done\" + GenerateFileName(hearthstoneID);
+            return @"..\..\Done\" + GenerateFileName(hearthstoneID);
         }
 
         void ProcessImageFile(int index, string hearthstoneID)

@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:HearthstoneHelper" mc:Ignorable="d" x:Class="HearthstoneHelper.MainWindow"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="631.848" Width="980.116">
     <Window.Resources>
         <local:CardMechanicsListToStringConverter x:Key="CardMechanicsListToStringConverter" />
     </Window.Resources>
-    <Grid x:Name="SuperGrid">
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -16,31 +16,66 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Items}" >
+        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Cards}" Margin="10">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ImagePath}" />
+                            <Image Source="{Binding Image}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="100"/>
+                <DataGridTextColumn x:Name="costColumn" Binding="{Binding Cost}" Header="Cost" Width="100"/>
+                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="100"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="100"/>
                 <DataGridTextColumn x:Name="mechanicsColumn" Binding="{Binding Mechanics, Converter={StaticResource CardMechanicsListToStringConverter}}" Header="Mechanics" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="ControlsGrid" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <CheckBox Grid.Row="0" Content="CheckBox" HorizontalAlignment="Left"  VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
-            <TextBox Grid.Row="1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" />
-        </Grid>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Name"/>
+            <TextBox Text="{Binding NameFilterText, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Cost"/>
+            <UniformGrid Rows="1" Columns="4">
+                <CheckBox Grid.Column="0" Content="1" IsChecked="{Binding FilterCost1Enabled}"/>
+                <CheckBox Grid.Column="1" Content="2" IsChecked="{Binding FilterCost2Enabled}"/>
+                <CheckBox Grid.Column="2" Content="3" IsChecked="{Binding FilterCost3Enabled}"/>
+                <CheckBox Grid.Column="3" Content="4" IsChecked="{Binding FilterCost4Enabled}"/>
+            </UniformGrid>
+            <UniformGrid Rows="1" Columns="4">
+                <CheckBox Grid.Column="0" Content="5" IsChecked="{Binding FilterCost5Enabled}"/>
+                <CheckBox Grid.Column="1" Content="6" IsChecked="{Binding FilterCost6Enabled}"/>
+                <CheckBox Grid.Column="2" Content="7+" IsChecked="{Binding FilterCost7PlusEnabled}"/>
+            </UniformGrid>
+            <TextBlock Text="Rarity"/>
+            <CheckBox Content="Free" IsChecked="{Binding FilterRarityFreeEnabled}"/>
+            <CheckBox Content="Common" IsChecked="{Binding FilterRarityCommonEnabled}"/>
+            <CheckBox Content="Rare" IsChecked="{Binding FilterRarityRareEnabled}"/>
+            <CheckBox Content="Epic" IsChecked="{Binding FilterRarityEpicEnabled}"/>
+            <CheckBox Content="Legendary" IsChecked="{Binding FilterRarityLegendaryEnabled}"/>
+            <TextBlock Text="Set"/>
+            <CheckBox Content="Basic"></CheckBox>
+            <CheckBox Content="Classic"></CheckBox>
+            <CheckBox Content="Curse of Naxxramas"></CheckBox>
+            <CheckBox Content="Globins vs Gnomes"></CheckBox>
+            <CheckBox Content="Blackrock Mountain"></CheckBox>
+            <CheckBox Content="Reward"></CheckBox>
+            <CheckBox Content="Promotion"></CheckBox>
+            <TextBlock Text="Type"/>
+            <CheckBox Content="Minion"></CheckBox>
+            <CheckBox Content="Spell"></CheckBox>
+            <CheckBox Content="Weapon"></CheckBox>
+            <CheckBox Content="Hero"></CheckBox>
+            <CheckBox Content="HeroPower"></CheckBox>
+            <CheckBox Content="Enchantment"></CheckBox>
+            <TextBlock Text="Race"/>
+            <CheckBox Content="None"></CheckBox>
+            <CheckBox Content="Murloc"></CheckBox>
+            <CheckBox Content="Demon"></CheckBox>
+            <CheckBox Content="Beast"></CheckBox>
+            <CheckBox Content="Pirate"></CheckBox>
+            <CheckBox Content="Dragon"></CheckBox>
+            <CheckBox Content="Mech"></CheckBox>
+        </StackPanel>
     </Grid>
 </Window>

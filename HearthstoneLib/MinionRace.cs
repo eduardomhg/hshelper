@@ -9,6 +9,7 @@ namespace Hearthstone
         Totem,
         Pirate, 
         Dragon,
+        Mech,
         None
     }
 }

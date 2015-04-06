@@ -4,9 +4,11 @@ namespace Hearthstone
     public enum CardSet
     {
         Basic,
-        Expert,
+        Classic,
         Naxxramas,
         Reward,
-        Promotion
+        Promotion,
+        GlobinsVsGnomes,
+        BlackrockMountain
     }
 }
