@@ -8,7 +8,7 @@ namespace Hearthstone
         Naxxramas,
         Reward,
         Promotion,
-        GlobinsVsGnomes,
+        GoblinsVsGnomes,
         BlackrockMountain
     }
 }

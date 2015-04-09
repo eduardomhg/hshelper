@@ -191,7 +191,7 @@ namespace Hearthstone
             HSJsonDatabase database = (HSJsonDatabase)ser.ReadObject(fs);
             fs.Close();
 
-            AllCards = new List<CardInfo>(1000);
+            AllCards = new List<CardInfo>(2000);
 
             
             LoadJsonSet(database.Basic, CardSet.Basic);
@@ -199,7 +199,7 @@ namespace Hearthstone
             LoadJsonSet(database.Classic, CardSet.Classic);
             LoadJsonSet(database.Promotion, CardSet.Promotion);
             LoadJsonSet(database.Reward, CardSet.Reward);
-            LoadJsonSet(database.GoblinsVsGnomes, CardSet.GlobinsVsGnomes); 
+            LoadJsonSet(database.GoblinsVsGnomes, CardSet.GoblinsVsGnomes); 
             LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain); 
         }
 

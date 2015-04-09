@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:HearthstoneHelper" mc:Ignorable="d" x:Class="HearthstoneHelper.MainWindow"
-        Title="MainWindow" Height="631.848" Width="980.116">
+        Title="MainWindow" Height="740.848" Width="980.116">
     <Window.Resources>
         <local:CardMechanicsListToStringConverter x:Key="CardMechanicsListToStringConverter" />
     </Window.Resources>
@@ -16,36 +16,43 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Cards}" Margin="10">
+        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Cards}" Margin="10" CanUserAddRows="false">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Image}" />
-                        </DataTemplate>
+                            <Image Source="{Binding Image}">
+                                <Image.ToolTip>
+                                    <Image Source="{Binding Image}"/>
+                                </Image.ToolTip>
+                            </Image> 
+                        </DataTemplate>                        
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="100"/>
                 <DataGridTextColumn x:Name="costColumn" Binding="{Binding Cost}" Header="Cost" Width="100"/>
                 <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="100"/>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="100"/>
-                <DataGridTextColumn x:Name="mechanicsColumn" Binding="{Binding Mechanics, Converter={StaticResource CardMechanicsListToStringConverter}}" Header="Mechanics" Width="*"/>
+                <DataGridTextColumn x:Name="textColumn" Binding="{Binding Text}" Header="Text" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Name"/>
             <TextBox Text="{Binding NameFilterText, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Text"/>
+            <TextBox Text="{Binding TextFilterText, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Cost"/>
             <UniformGrid Rows="1" Columns="4">
-                <CheckBox Grid.Column="0" Content="1" IsChecked="{Binding FilterCost1Enabled}"/>
-                <CheckBox Grid.Column="1" Content="2" IsChecked="{Binding FilterCost2Enabled}"/>
-                <CheckBox Grid.Column="2" Content="3" IsChecked="{Binding FilterCost3Enabled}"/>
-                <CheckBox Grid.Column="3" Content="4" IsChecked="{Binding FilterCost4Enabled}"/>
+                <CheckBox Grid.Column="0" Content="0" IsChecked="{Binding FilterCost0Enabled}"/>
+                <CheckBox Grid.Column="1" Content="1" IsChecked="{Binding FilterCost1Enabled}"/>
+                <CheckBox Grid.Column="2" Content="2" IsChecked="{Binding FilterCost2Enabled}"/>
+                <CheckBox Grid.Column="3" Content="3" IsChecked="{Binding FilterCost3Enabled}"/>
             </UniformGrid>
             <UniformGrid Rows="1" Columns="4">
-                <CheckBox Grid.Column="0" Content="5" IsChecked="{Binding FilterCost5Enabled}"/>
-                <CheckBox Grid.Column="1" Content="6" IsChecked="{Binding FilterCost6Enabled}"/>
-                <CheckBox Grid.Column="2" Content="7+" IsChecked="{Binding FilterCost7PlusEnabled}"/>
+                <CheckBox Grid.Column="0" Content="4" IsChecked="{Binding FilterCost4Enabled}"/>
+                <CheckBox Grid.Column="1" Content="5" IsChecked="{Binding FilterCost5Enabled}"/>
+                <CheckBox Grid.Column="2" Content="6" IsChecked="{Binding FilterCost6Enabled}"/>
+                <CheckBox Grid.Column="3" Content="7+" IsChecked="{Binding FilterCost7PlusEnabled}"/>
             </UniformGrid>
             <TextBlock Text="Rarity"/>
             <CheckBox Content="Free" IsChecked="{Binding FilterRarityFreeEnabled}"/>
@@ -54,28 +61,50 @@
             <CheckBox Content="Epic" IsChecked="{Binding FilterRarityEpicEnabled}"/>
             <CheckBox Content="Legendary" IsChecked="{Binding FilterRarityLegendaryEnabled}"/>
             <TextBlock Text="Set"/>
-            <CheckBox Content="Basic"></CheckBox>
-            <CheckBox Content="Classic"></CheckBox>
-            <CheckBox Content="Curse of Naxxramas"></CheckBox>
-            <CheckBox Content="Globins vs Gnomes"></CheckBox>
-            <CheckBox Content="Blackrock Mountain"></CheckBox>
-            <CheckBox Content="Reward"></CheckBox>
-            <CheckBox Content="Promotion"></CheckBox>
+            <CheckBox Content="Basic" IsChecked="{Binding FilterSetBasicEnabled}"/>
+            <CheckBox Content="Classic" IsChecked="{Binding FilterSetClassicEnabled}"/>
+            <CheckBox Content="Curse of Naxxramas" IsChecked="{Binding FilterSetNaxxramasEnabled}"/>
+            <CheckBox Content="Globins vs Gnomes" IsChecked="{Binding FilterSetGoblinsVsGnomesEnabled}"/>
+            <CheckBox Content="Blackrock Mountain" IsChecked="{Binding FilterSetBlackrockMountainEnabled}"/>
+            <CheckBox Content="Reward" IsChecked="{Binding FilterSetRewardEnabled}"/>
+            <CheckBox Content="Promotion" IsChecked="{Binding FilterSetPromotionEnabled}"/>
             <TextBlock Text="Type"/>
-            <CheckBox Content="Minion"></CheckBox>
-            <CheckBox Content="Spell"></CheckBox>
-            <CheckBox Content="Weapon"></CheckBox>
-            <CheckBox Content="Hero"></CheckBox>
-            <CheckBox Content="HeroPower"></CheckBox>
-            <CheckBox Content="Enchantment"></CheckBox>
+            <CheckBox Content="Minion" IsChecked="{Binding FilterTypeMinionEnabled}"/>
+            <CheckBox Content="Spell" IsChecked="{Binding FilterTypeSpellEnabled}"/>
+            <CheckBox Content="Weapon" IsChecked="{Binding FilterTypeWeaponEnabled}"/>
+            <CheckBox Content="Hero" IsChecked="{Binding FilterTypeHeroEnabled}"/>
+            <CheckBox Content="Hero Power" IsChecked="{Binding FilterTypeHeroPowerEnabled}"/>
+            <CheckBox Content="Enchantment" IsChecked="{Binding FilterTypeEnchantmentEnabled}"/>
             <TextBlock Text="Race"/>
-            <CheckBox Content="None"></CheckBox>
-            <CheckBox Content="Murloc"></CheckBox>
-            <CheckBox Content="Demon"></CheckBox>
-            <CheckBox Content="Beast"></CheckBox>
-            <CheckBox Content="Pirate"></CheckBox>
-            <CheckBox Content="Dragon"></CheckBox>
-            <CheckBox Content="Mech"></CheckBox>
+            <CheckBox Content="None" IsChecked="{Binding FilterRaceNoneEnabled}"/>
+            <CheckBox Content="Murloc" IsChecked="{Binding FilterRaceMurlocEnabled}"/>
+            <CheckBox Content="Demon" IsChecked="{Binding FilterRaceDemonEnabled}"/>
+            <CheckBox Content="Beast" IsChecked="{Binding FilterRaceBeastEnabled}"/>
+            <CheckBox Content="Pirate" IsChecked="{Binding FilterRacePirateEnabled}"/>
+            <CheckBox Content="Dragon" IsChecked="{Binding FilterRaceDragonEnabled}"/>
+            <CheckBox Content="Mech" IsChecked="{Binding FilterRaceMechEnabled}"/>
+            <TextBlock Text="Collectibility"/>
+            <CheckBox Content="Collectible" IsChecked="{Binding FilterCollectibleEnabled}"/>
+            <CheckBox Content="Non-Collectible" IsChecked="{Binding FilterNonCollectibleEnabled}"/>
+            <TextBlock Text="Image"/>
+            <CheckBox Content="With Image" IsChecked="{Binding FilterWithImageEnabled}"/>
+            <CheckBox Content="Without Image" IsChecked="{Binding FilterWithoutImageEnabled}"/>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}Cards: {0}/{1}">
+                        <Binding Path="NumberOfCards" FallbackValue="0"></Binding>
+                        <Binding Path="TotalNumberOfCards" FallbackValue="0"></Binding>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}Images: {0}/{1}">
+                        <Binding Path="NumberOfCardsWithImage" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfCards" FallbackValue="0"></Binding>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Window>
