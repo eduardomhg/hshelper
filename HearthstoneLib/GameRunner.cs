@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Hearthstone
 {
+    /// <summary>
+    /// Runs a Hearthstone game.
+    /// 
+    /// <remarks>
+    /// Rules from http://hearthstone.gamepedia.com/Advanced_rulebook has been used.
+    /// </summary>
     public class GameRunner
     {
         private Board _board;

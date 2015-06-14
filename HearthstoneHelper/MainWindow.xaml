@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:HearthstoneHelper" mc:Ignorable="d" x:Class="HearthstoneHelper.MainWindow"
-        Title="MainWindow" Height="740.848" Width="980.116">
+        Title="MainWindow" Height="899.848" Width="980.116">
     <Window.Resources>
         <local:CardMechanicsListToStringConverter x:Key="CardMechanicsListToStringConverter" />
     </Window.Resources>
@@ -16,26 +16,44 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Cards}" Margin="10" CanUserAddRows="false">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Image}">
-                                <Image.ToolTip>
-                                    <Image Source="{Binding Image}"/>
-                                </Image.ToolTip>
-                            </Image> 
-                        </DataTemplate>                        
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="100"/>
-                <DataGridTextColumn x:Name="costColumn" Binding="{Binding Cost}" Header="Cost" Width="100"/>
-                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="100"/>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="100"/>
-                <DataGridTextColumn x:Name="textColumn" Binding="{Binding Text}" Header="Text" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid x:Name="LeftGrid" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Row="0" x:Name="itemDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Cards}" Margin="10" CanUserAddRows="false">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}">
+                                    <Image.ToolTip>
+                                        <ToolTip Background="Transparent">
+                                            <Image Source="{Binding Image}"/>
+                                        </ToolTip>
+                                    </Image.ToolTip>
+                                </Image>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="costColumn" Binding="{Binding Cost}" Header="Cost" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="numberColumn" Binding="{Binding NumberOfCards}" Header="Number" Width="100"/>
+                    <DataGridTextColumn x:Name="numberGoldColumn" Binding="{Binding NumberOfGoldCards}" Header="Number (Gold)" Width="100"/>
+                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding HearthstoneID}" Header="ID" Width="100"/>
+                    <DataGridTextColumn x:Name="textColumn" Binding="{Binding Text}" Header="Text" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Name="saveButton" Content="Save" VerticalAlignment="Center" Click="saveButton_Click"></Button>
+            </StackPanel>
+        </Grid>
+
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Name"/>
             <TextBox Text="{Binding NameFilterText, UpdateSourceTrigger=PropertyChanged}"/>
@@ -54,6 +72,20 @@
                 <CheckBox Grid.Column="2" Content="6" IsChecked="{Binding FilterCost6Enabled}"/>
                 <CheckBox Grid.Column="3" Content="7+" IsChecked="{Binding FilterCost7PlusEnabled}"/>
             </UniformGrid>
+            <TextBlock Text="Class"/>
+            <UniformGrid Rows="5" Columns="2">
+                <CheckBox Grid.Row="0" Grid.Column="0" Content="Neutral" IsChecked="{Binding FilterClassNeutralEnabled}"/>
+                <CheckBox Grid.Row="0" Grid.Column="1" Content="Mage" IsChecked="{Binding FilterClassMageEnabled}"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" Content="Warrior" IsChecked="{Binding FilterClassWarriorEnabled}"/>
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="Hunter" IsChecked="{Binding FilterClassHunterEnabled}"/>
+                <CheckBox Grid.Row="2" Grid.Column="0" Content="Warlock" IsChecked="{Binding FilterClassWarlockEnabled}"/>
+                <CheckBox Grid.Row="2" Grid.Column="1" Content="Druid" IsChecked="{Binding FilterClassDruidEnabled}"/>
+                <CheckBox Grid.Row="3" Grid.Column="0" Content="Shaman" IsChecked="{Binding FilterClassShamanEnabled}"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" Content="Paladin" IsChecked="{Binding FilterClassPaladinEnabled}"/>
+                <CheckBox Grid.Row="4" Grid.Column="0" Content="Priest" IsChecked="{Binding FilterClassPriestEnabled}"/>
+                <CheckBox Grid.Row="4" Grid.Column="1" Content="Rogue" IsChecked="{Binding FilterClassRogueEnabled}"/>
+            </UniformGrid>
+
             <TextBlock Text="Rarity"/>
             <CheckBox Content="Free" IsChecked="{Binding FilterRarityFreeEnabled}"/>
             <CheckBox Content="Common" IsChecked="{Binding FilterRarityCommonEnabled}"/>
@@ -92,7 +124,7 @@
             <TextBlock>
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}Cards: {0}/{1}">
-                        <Binding Path="NumberOfCards" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfFilteredCards" FallbackValue="0"></Binding>
                         <Binding Path="TotalNumberOfCards" FallbackValue="0"></Binding>
                     </MultiBinding>
                 </TextBlock.Text>
@@ -100,11 +132,33 @@
             <TextBlock>
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}Images: {0}/{1}">
-                        <Binding Path="NumberOfCardsWithImage" FallbackValue="0"></Binding>
-                        <Binding Path="NumberOfCards" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfFilteredCardsWithImage" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfFilteredCards" FallbackValue="0"></Binding>
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}All Available: {0}/{1}">
+                        <Binding Path="NumberOfFilteredCardsAll" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfFilteredCards" FallbackValue="0"></Binding>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}At Least One: {0}/{1}">
+                        <Binding Path="NumberOfFilteredCardsAtLeastOne" FallbackValue="0"></Binding>
+                        <Binding Path="NumberOfFilteredCards" FallbackValue="0"></Binding>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Text="Number"/>
+            <UniformGrid Rows="1" Columns="4">
+                <CheckBox Grid.Column="0" Content="0" IsChecked="{Binding FilterNumber0Enabled}"/>
+                <CheckBox Grid.Column="1" Content="1" IsChecked="{Binding FilterNumber1Enabled}"/>
+                <CheckBox Grid.Column="2" Content="2+" IsChecked="{Binding FilterNumber2PlusEnabled}"/>
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Window>

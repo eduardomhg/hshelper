@@ -74,6 +74,12 @@
     <Compile Include="CardMechanics.cs" />
     <Compile Include="CardRarity.cs" />
     <Compile Include="CardSet.cs" />
+    <Compile Include="Enchantments\AlextraszasFire.cs" />
+    <Compile Include="HeroEnchantment.cs" />
+    <Compile Include="MinionEnchantment.cs" />
+    <Compile Include="Enchantments\AncestralInfusion.cs" />
+    <Compile Include="IEnchantment.cs" />
+    <Compile Include="Enchantment.cs" />
     <Compile Include="Minions\NoviceEngineer.cs" />
     <Compile Include="Minions\ShatteredSunCleric.cs" />
     <Compile Include="Player.cs" />
@@ -121,6 +127,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

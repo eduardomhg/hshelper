@@ -21,33 +21,54 @@ namespace GameSimulator
     /// </summary>
     public partial class CardViewer : UserControl
     {
-        private Card _card;
+        public static readonly DependencyProperty CardProperty = DependencyProperty.Register("Card", typeof(Card), typeof(CardViewer),
+                                                                                             new FrameworkPropertyMetadata(new PropertyChangedCallback(OnCardChanged)));
+                                                                                                                           
 
         public Card Card
         {
-            get { return _card; }
-            set { _card = value; Refresh(); }
+            get
+            {
+                return (Card)GetValue(CardProperty);
+            }
+
+            set
+            {
+                SetValue(CardProperty, value);
+            }
         }
         
         public CardViewer()
         {
             InitializeComponent();
-            //Refresh();
+            Refresh();
+        }
+
+        private static void OnCardChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (d as CardViewer).Refresh();
         }
 
         private void Refresh()
         {
-            textBlockName.Text = _card.Info.Name;
-            textBlockCost.Text = _card.CurrentCost.ToString();
-            if (_card.Info.Image != null)
+            if (Card != null)
             {
-                imageCard.Source = _card.Info.Image;
+                textBlockName.Text = Card.Info.Name;
+                textBlockCost.Text = Card.CurrentCost.ToString();
+                if (Card.Info.Image != null)
+                {
+                    imageCard.Source = Card.Info.Image;
+                }
+
+                TextBlock t = new TextBlock();
+                t.Inlines.AddRange(ProcessToolTipText(Card.Info.Text));
+
+                imageCard.ToolTip = t;
             }
-
-            TextBlock t = new TextBlock();
-            t.Inlines.AddRange(ProcessToolTipText(_card.Info.Text));
-
-            imageCard.ToolTip = t;
+            else
+            {
+                textBlockName.Text = "null";
+            }
         }
 
         private Inline[] ProcessToolTipText(string text)

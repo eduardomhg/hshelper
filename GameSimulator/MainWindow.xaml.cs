@@ -20,40 +20,25 @@ using Hearthstone.Players;
 
 namespace GameSimulator
 {
-    public class Model : INotifyPropertyChanged
-    {
-        private string _hola;
-        public string Hola { get { return _hola; } set { _hola = value; if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("Hola")); } }
-        private string _adios;
-        public string Adios { get { return _adios; } set { _adios = value; if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("Adios")); } }    
-    
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Model _model;
+        public MainViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            string path = @"C:\Users\Edu\Downloads\AllSets.json";
-            CardInfo.LoadImages();
-            CardInfo.LoadJsonDatabase(path);
-
-            _model = new Model { Hola = "Hlala", Adios = "aslasl" };
-
-            this.DataContext = _model;
+            _viewModel = new MainViewModel();
+            this.DataContext = _viewModel;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _model.Hola = "tururu";
-            _model.Adios = "tarara";
+            //_model.Hola = "tururu";
+            //_model.Adios = "tarara";
 
             cardViewer.Card = new Card(CardInfo.FromCardName("Frostbolt"));
 

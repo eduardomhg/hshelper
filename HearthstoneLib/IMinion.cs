@@ -8,11 +8,11 @@ namespace Hearthstone
 {
     public interface IMinion : ICharacter
     {
-        bool HasStealth { get; }
-        bool HasTaunt { get; }
-        bool HasDivineShield { get; }
-        bool HasCharge { get; }
-        bool HasWindfury { get; }
+        bool HasStealth { get; set; }
+        bool HasTaunt { get; set; }
+        bool HasDivineShield { get; set; }
+        bool HasCharge { get; set; }
+        bool HasWindfury { get; set; }
         bool HasPoison { get; }
         bool HasAura { get; }
 

@@ -41,24 +41,28 @@ namespace Hearthstone
         public bool HasStealth
         {
             get { return _hasStealth; }
+            set { _hasStealth = value; }
         }
 
         private bool _hasTaunt;
         public bool HasTaunt
         {
             get { return _hasTaunt; }
+            set { _hasTaunt = value; }
         }
 
         private bool _hasDivineShield;
         public bool HasDivineShield
         {
             get { return _hasDivineShield; }
+            set { _hasDivineShield = value; }
         }
 
         private bool _hasCharge;
         public bool HasCharge
         {
             get { return _hasCharge; }
+            set { _hasCharge = value; }
         }
 
         private bool _hasPoison;
@@ -193,6 +197,7 @@ namespace Hearthstone
         public bool HasWindfury
         {
             get { return _hasWindfury; }
+            set { _hasWindfury = value; }
         }
 
 

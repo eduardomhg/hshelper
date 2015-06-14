@@ -145,7 +145,7 @@ namespace Hearthstone
         /// <summary>
         /// The loaded the card image.
         /// </summary>        
-        public BitmapImage Image { get; private set; }
+        public BitmapImage Image { get; set; }
 
         public static List<CardInfo> AllCards { get; private set; }
 
@@ -172,7 +172,7 @@ namespace Hearthstone
             }
         }
 
-        private static BitmapImage FindImage(string id)
+        protected static BitmapImage FindImage(string id)
         {
             if (CardImages != null && CardImages.ContainsKey(id))
             {
@@ -185,29 +185,32 @@ namespace Hearthstone
         }
 
         public static void LoadJsonDatabase(string path)
+        {
+            AllCards = new List<CardInfo>(2000);
+            LoadJsonDatabase(path, AllCards);
+        }
+
+        public static void LoadJsonDatabase(string path, List<CardInfo> cardList)
         {            
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(HSJsonDatabase));
             FileStream fs = new FileStream(path, FileMode.Open);
             HSJsonDatabase database = (HSJsonDatabase)ser.ReadObject(fs);
             fs.Close();
 
-            AllCards = new List<CardInfo>(2000);
-
-            
-            LoadJsonSet(database.Basic, CardSet.Basic);
-            LoadJsonSet(database.Naxxramas, CardSet.Naxxramas);
-            LoadJsonSet(database.Classic, CardSet.Classic);
-            LoadJsonSet(database.Promotion, CardSet.Promotion);
-            LoadJsonSet(database.Reward, CardSet.Reward);
-            LoadJsonSet(database.GoblinsVsGnomes, CardSet.GoblinsVsGnomes); 
-            LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain); 
+            LoadJsonSet(database.Basic, CardSet.Basic, cardList);
+            LoadJsonSet(database.Naxxramas, CardSet.Naxxramas, cardList);
+            LoadJsonSet(database.Classic, CardSet.Classic, cardList);
+            LoadJsonSet(database.Promotion, CardSet.Promotion, cardList);
+            LoadJsonSet(database.Reward, CardSet.Reward, cardList);
+            LoadJsonSet(database.GoblinsVsGnomes, CardSet.GoblinsVsGnomes, cardList);
+            LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain, cardList); 
         }
 
-        private static void LoadJsonSet(List<HSJsonDatabase.Card> setJsonCards, CardSet set)
+        private static void LoadJsonSet(List<HSJsonDatabase.Card> setJsonCards, CardSet set, List<CardInfo> cardList)
         {
             foreach (HSJsonDatabase.Card jsonCard in setJsonCards)
             {
-                AllCards.Add(new CardInfo
+                cardList.Add(new CardInfo
                 {
                     Name = jsonCard.name,
                     Cost = jsonCard.cost,

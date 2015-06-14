@@ -22,5 +22,10 @@ namespace HearthstoneHelper
             viewModel = new MainViewModel();
             this.DataContext = viewModel;
         }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExtendedCardInfo.SaveXmlDatabase("Extended.xml");
+        }
     }
 }

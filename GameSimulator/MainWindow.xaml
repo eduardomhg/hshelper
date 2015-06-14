@@ -8,7 +8,9 @@
         <TextBox x:Name="textBoxLog" HorizontalAlignment="Left" Height="149" Margin="214,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
 
         <local:DoubleTextBox HorizontalAlignment="Left" Margin="34,87,0,0" VerticalAlignment="Top" Text1="{Binding Hola}" Text2="{Binding Adios}"/>
-        <local:CardViewer x:Name="cardViewer" HorizontalAlignment="Left" Margin="46,206,0,0" VerticalAlignment="Top" Height="104" Width="76"/>
+        
+        <local:CardViewer x:Name="cardViewer" Card="{Binding Card}" HorizontalAlignment="Left" Margin="46,206,0,0" VerticalAlignment="Top" Height="104" Width="76"/>
+        
         <local:CardListViewer HorizontalAlignment="Left" Margin="265,325,0,0" VerticalAlignment="Top"/>
         <local:CardListViewer x:Name="player1HandViewer" HorizontalAlignment="Left" Margin="116,357,0,0" VerticalAlignment="Top" Height="87" Width="627"/>
 
