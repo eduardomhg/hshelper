@@ -203,7 +203,8 @@ namespace Hearthstone
             LoadJsonSet(database.Promotion, CardSet.Promotion, cardList);
             LoadJsonSet(database.Reward, CardSet.Reward, cardList);
             LoadJsonSet(database.GoblinsVsGnomes, CardSet.GoblinsVsGnomes, cardList);
-            LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain, cardList); 
+            LoadJsonSet(database.BlackrockMountain, CardSet.BlackrockMountain, cardList);
+            LoadJsonSet(database.TheGrandTournament, CardSet.TheGrandTournament, cardList); 
         }
 
         private static void LoadJsonSet(List<HSJsonDatabase.Card> setJsonCards, CardSet set, List<CardInfo> cardList)
@@ -318,14 +319,16 @@ namespace Hearthstone
                                                                                                { "GrantCharge", CardMechanics.GrantCharge },
                                                                                                { "Freeze", CardMechanics.Freeze },
                                                                                                { "Morph", CardMechanics.Morph },
-            { "AdjacentBuff", CardMechanics.AdjacentBuff }, 
-            { "Aura", CardMechanics.Aura },
-            { "HealTarget", CardMechanics.HealTarget },
-            { "Poisonous", CardMechanics.Poisonous }, 
-            { "Enrage", CardMechanics.Enrage },
-            { "AffectedBySpellPower", CardMechanics.AffectedBySpellPower },
-            { "Silence", CardMechanics.Silence },
-            { "Summoned", CardMechanics.Summoned },};
+                                                                                               { "AdjacentBuff", CardMechanics.AdjacentBuff }, 
+                                                                                               { "Aura", CardMechanics.Aura },
+                                                                                               { "HealTarget", CardMechanics.HealTarget },
+                                                                                               { "Poisonous", CardMechanics.Poisonous }, 
+                                                                                               { "Enrage", CardMechanics.Enrage },
+                                                                                               { "AffectedBySpellPower", CardMechanics.AffectedBySpellPower },
+                                                                                               { "Silence", CardMechanics.Silence },
+                                                                                               { "Summoned", CardMechanics.Summoned },
+                                                                                               { "Inspire", CardMechanics.Inspire },
+            };
             return (text != null) ? mechanics[text] : CardMechanics.None;
         }
 

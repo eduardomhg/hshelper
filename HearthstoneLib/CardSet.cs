@@ -9,6 +9,7 @@ namespace Hearthstone
         Reward,
         Promotion,
         GoblinsVsGnomes,
-        BlackrockMountain
+        BlackrockMountain,
+        TheGrandTournament
     }
 }

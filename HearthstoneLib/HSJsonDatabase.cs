@@ -152,5 +152,7 @@ namespace Hearthstone
         internal List<Card> GoblinsVsGnomes;
         [DataMember(Name = "Blackrock Mountain")]
         internal List<Card> BlackrockMountain;
+        [DataMember(Name = "The Grand Tournament")]
+        internal List<Card> TheGrandTournament;
     }
 }

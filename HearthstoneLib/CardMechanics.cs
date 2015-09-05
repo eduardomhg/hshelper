@@ -28,6 +28,7 @@ namespace Hearthstone
         AffectedBySpellPower,
         Silence,
         Summoned,
+        Inspire,
         None
     }
 }

@@ -322,6 +322,14 @@ namespace HearthstoneHelper
         }
         private Func<ExtendedCardInfo, bool> _filterSetReward = (c => c.Set == CardSet.Reward);
 
+        private bool _filterSetTheGrandTournamentEnabled;
+        public bool FilterSetTheGrandTournamentEnabled
+        {
+            get { return _filterSetTheGrandTournamentEnabled; }
+            set { SetProperty(ref _filterSetTheGrandTournamentEnabled, value); UpdateFilters(); }
+        }
+        private Func<ExtendedCardInfo, bool> _filterSetTheGrandTournament = (c => c.Set == CardSet.TheGrandTournament);
+
         private bool _filterTypeMinionEnabled;
         public bool FilterTypeMinionEnabled
         {
@@ -499,7 +507,7 @@ namespace HearthstoneHelper
         public MainViewModel()
         {
             ExtendedCardInfo.LoadImages();
-            ExtendedCardInfo.LoadJsonDatabase("AllSets.enUS.json");
+            ExtendedCardInfo.LoadJsonDatabase("AllSets.json");
 
             if (!ExtendedCardInfo.LoadXmlDatabase("Extended.xml"))
             {
@@ -534,6 +542,7 @@ namespace HearthstoneHelper
             _filterSetBlackrockMountainEnabled = true;
             _filterSetPromotionEnabled = true;
             _filterSetRewardEnabled = true;
+            _filterSetTheGrandTournamentEnabled = true;
 
             _filterTypeMinionEnabled = true;
             _filterTypeSpellEnabled = true;
@@ -617,6 +626,7 @@ namespace HearthstoneHelper
             if (_filterSetNaxxramasEnabled) setFilters.Add(_filterSetNaxxramas);
             if (_filterSetGoblinsVsGnomesEnabled) setFilters.Add(_filterSetGoblinsVsGnomes);
             if (_filterSetBlackrockMountainEnabled) setFilters.Add(_filterSetBlackrockMountain);
+            if (_filterSetTheGrandTournamentEnabled) setFilters.Add(_filterSetTheGrandTournament);
             if (_filterSetPromotionEnabled) setFilters.Add(_filterSetPromotion);
             if (_filterSetRewardEnabled) setFilters.Add(_filterSetReward);
             _filters.Add(setFilters);

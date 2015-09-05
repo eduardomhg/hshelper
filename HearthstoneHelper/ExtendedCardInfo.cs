@@ -102,6 +102,21 @@ namespace HearthstoneHelper
 
                 fs.Close();
 
+                // Merge from JSON. Add any new cards.
+
+                if (AllCards.Count != AllCardsExtended.Count)
+                {
+                    foreach (CardInfo cardInfo in AllCards)
+                    {
+                        if (!AllCardsExtended.Any(c => c.HearthstoneID == cardInfo.HearthstoneID))
+                        {
+                            AllCardsExtended.Add(new ExtendedCardInfo(cardInfo));
+                        }
+                    }
+
+                    SaveXmlDatabase(path);
+                }
+
                 return true;
             }
             return false;

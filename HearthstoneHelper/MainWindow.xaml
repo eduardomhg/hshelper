@@ -98,6 +98,7 @@
             <CheckBox Content="Curse of Naxxramas" IsChecked="{Binding FilterSetNaxxramasEnabled}"/>
             <CheckBox Content="Globins vs Gnomes" IsChecked="{Binding FilterSetGoblinsVsGnomesEnabled}"/>
             <CheckBox Content="Blackrock Mountain" IsChecked="{Binding FilterSetBlackrockMountainEnabled}"/>
+            <CheckBox Content="The Grand Tournament" IsChecked="{Binding FilterSetTheGrandTournamentEnabled}"/>
             <CheckBox Content="Reward" IsChecked="{Binding FilterSetRewardEnabled}"/>
             <CheckBox Content="Promotion" IsChecked="{Binding FilterSetPromotionEnabled}"/>
             <TextBlock Text="Type"/>
